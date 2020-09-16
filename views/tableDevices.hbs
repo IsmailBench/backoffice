@@ -1,0 +1,140 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a href="/api/v1/" class="navbar-left">
+        <img src="/public/images/Logo-Kimo.jpg" id="logoKimo">
+    </a>
+    <a class="navbar-brand" id="SearchText">Recherche de Device par :</a>
+    <ul class="ulBtnDevices">
+        <div class="btn-group" id="btnDevUi2">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                DevEUI
+            </button>
+            <div class="dropdown-menu">
+                    <div class="form-group">
+                        <label for="devUi">DevEUI</label>
+                        <input type="text" class="form-control" id="devEUi" name="devEUI" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </div>
+        <div class="btn-group" id="btnId">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                ID
+            </button>
+            <div class="dropdown-menu">
+                    <div class="form-group">
+                        <label for="id">ID</label>
+                        <input type="text" class="form-control" id="id" name="id" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </div>
+        <div class="btn-group" id="btnListe">
+            <button type="button" class="btn btn-secondary dropdown-toggle  " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Liste
+            </button>
+            <div class="dropdown-menu">
+                    <div class="form-group">
+                        <label for="search">ID ou DevEUI</label>
+                        <input type="text" class="form-control" id="search" name="search">
+                    </div>
+                    <div class="form-group">
+                        <label for="offset">offset</label>
+                        <input type="text" class="form-control" id="offset" name="offset" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="limit">nombre de devices</label>
+                        <input type="text" class="form-control" id="limit" name="limit" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </div>
+    </ul>
+    <div class="btn-group" id="btnAdd">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Ajouter un device
+        </button>
+        <div class="dropdown-menu" id="dropdownAddDevice">
+                <div class="form-group">
+                    <label for="devUi">devEUI</label>
+                    <input type="text" class="form-control" id="devEUi" name="devEUi" required>
+                </div>
+                <div class="form-group">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" required>
+                </div>
+                <div class="form-group">
+                    <label for="version">Version</label>
+                    <input type="text" class="form-control" id="version" name="version" required>
+                </div>
+                <div class="form-group">
+                    <label for="build">Build</label>
+                    <input type="text" class="form-control" id="build" name="build" required>
+                </div>
+                <div class="form-group">
+                    <label for="appKey">AppKey</label>
+                    <input type="text" class="form-control" id="appKey" name="appKey" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter </button>
+        </div>
+    </div>
+    <a id="SearchText2">Nombre de devices affiché : {{count}}</a>
+</nav>
+<div class="table-responsive">
+    <table class="table">
+        <thead class="thead-dark bg-dark">
+            <tr>
+                <th scope="col">DevEUI</th>
+                <th scope="col">ID</th>
+                <th scope="col">Derniere fois vue</th>
+                <th scope="col">Description</th>
+                <th scope="col">Sélectionné</th>
+            </tr>
+        </thead>
+        {{#if devices.result}} {{#each devices.result}}
+        <tbody>
+            <tr>
+                <td>
+                    <h5 class="title">
+                        <a href='/api/v1/devices/{{devEUI}}'>{{devEUI}} </a>
+                    </h5>
+                    <p>
+                        <a class="btn btn-primary" data-toggle="collapse" href="#collapse{{@index}}" role="button" aria-expanded="false" aria-controls="collapse{{@index}}">
+                            Détails
+                        </a>
+                    </p>
+                    <div class="collapse" id="collapse{{@index}}">
+                            <div class="card card-body" id="cardForm">
+                                <label for="devEUI">DevEUI</label>
+                                <input type="text" id="devEUI" name="devEUi" readonly value="{{devEUI}}">
+                                <label for="id">ID</label>
+                                <input type="text" name="id" id="id" value="{{name}}">
+                                <br>
+                                <ul>
+                                    <button class="btn btn-outline-primary btnDetails" type="delete" id="delete" name="delete">Delete</button>
+                                    <button class="btn btn-outline-primary btnDetails" type="update" id="update" name="update">Update</button>
+                                </ul>
+                            </div>
+                    </div>
+                </td>
+                <td>
+                    <h6>{{name}}</h6>
+                    <p id="deviceRefId">{{#idToRef name}}{{/idToRef}}</p>
+                </td>
+                <td>
+                    <p class="text">{{#dateToString lastSeenAt}}{{/dateToString}}</p>
+                </td>
+                <td>
+                    <p class="text" id="descriptionText">{{#replace description}}{{/replace}}</p>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="{{name}}">
+                        </label>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        {{/each}} {{/if}}
+    </table>
+</div>

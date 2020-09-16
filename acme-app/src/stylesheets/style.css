@@ -1,0 +1,92 @@
+.navbar {
+  height: 130px;
+}
+.collapse {
+  height: auto;
+  width: auto;
+}
+.btnDetails {
+  position: relative;
+  display: inline-block;
+}
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+.modal-content{
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+p{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+ul{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+label{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: right;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+#index{
+  position: absolute;
+  top: 30px;
+  left: 160px
+}
+#searchBtn {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  font-size: 60px;
+  color:#0056B3;
+  cursor: Pointer;
+}
+#addBtn{
+  position: absolute;
+  right: 180px;
+  top: 30px;
+  font-size: 60px;
+  color:#0056B3;
+  cursor: Pointer;
+}
+#deleteBtn{
+  position: absolute;
+  right: 110px;
+  top: 30px;
+  font-size: 60px;
+  color:#0056B3;
+  cursor: Pointer;
+}
+#homeBtn {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  font-size: 60px;
+  color:#0056B3;
+  cursor: Pointer;
+}
+#app {
+  margin-top: 0px;
+}
+#collapseSearche {
+position: absolute;
+top: 30px;
+width: 700px;
+margin-left: auto;
+margin-right: auto;
+}

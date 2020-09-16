@@ -1,0 +1,87 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a href="/api/v1/" class="navbar-left"><img src="/public/images/Logo-Kimo.jpg" id="logoKimo"></a>
+    <a class="navbar-brand" id="SearchText">Recherche de Gateway par :</a>
+    <ul class="ulBtnGateways">
+        <div class="btn-group" id="btnId">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                MAC
+            </button>
+            <div class="dropdown-menu">
+                    <div class="form-group">
+                        <label for="Mac">MAC</label>
+                        <input type="text" class="form-control" id="Mac" name="Mac" required pattern="[a-fA-F\d]+">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </div>
+        <div class="btn-group" id="btnListe">
+            <button type="button" class="btn btn-secondary dropdown-toggle  " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Liste
+            </button>
+            <div class="dropdown-menu">
+                    <div class="form-group">
+                        <label for="organisationId">organisationID</label>
+                        <input type="text" class="form-control" id="organisationId" name="organisationId">
+                    </div>
+                    <div class="form-group">
+                        <label for="offset">offset</label>
+                        <input type="text" class="form-control" id="offset" name="offset" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="limit">nombre de gateways</label>
+                        <input type="text" class="form-control" id="limit" name="limit" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </div>
+    </ul>
+    <div class="btn-group" id="btnAdd">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Ajouter un gateway
+        </button>
+        <div class="dropdown-menu" id="dropdownAddDevice">
+                <div class="form-group">
+                    <label for="mac">MAC</label>
+                    <input type="text" class="form-control" id="mac" name="mac" required pattern="[a-fA-F\d]+">
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter   </button>
+        </div>
+    </div>
+    <a id="SearchText2">Nombre de gateway affiché : {{count}}</a>
+</nav>
+<div class="table-responsive">
+    <table class="table">
+        <thead class="thead-dark bg-dark">
+            <tr>
+                <th scope="col">MAC</th>
+                <th scope="col">Crée le</th>
+                <th scope="col">Mise à jour le</th>
+                <th scope="col">Sélectionné</th>
+            </tr>
+        </thead>
+        {{#if gateways.result}} {{#each gateways.result}}
+        <tbody>
+            <tr>
+                <td>
+                    <h5 class="title">
+                        <a href='/api/v1/logs?devUi={{mac}}'>{{mac}} </a>
+                    </h5>
+                </td>
+                <td>
+                    <p>{{#dateToString  createdAt}}{{/dateToString}}</p>
+                </td>
+                <td>
+                    <p class="text">{{#dateToString  updatedAt}}{{/dateToString}}</p>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="{{mac}}">
+                        </label>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        {{/each}} {{/if}}
+    </table>
+</div>
